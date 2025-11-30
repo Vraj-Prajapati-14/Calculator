@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Allow all calculators
+Allow: /calculator/*
+Allow: /basic-calculator
+Allow: /percentage-calculator
+Allow: /gpa-calculator
+Allow: /grade-calculator
+Allow: /weighted-grade-calculator
+Allow: /average-calculator
+Allow: /ratio-calculator
+Allow: /factorial-calculator
+Allow: /lcm-calculator
+Allow: /matrix-calculator
+Allow: /linear-equation-solver
+Allow: /quadratic-equation-solver
+Allow: /statistics-calculator
+Allow: /standard-deviation-calculator
+Allow: /permutation-combination-calculator
+Allow: /trigonometry-calculator
+Allow: /fraction-calculator
+Allow: /algebra-calculator
+Allow: /derivative-calculator
+Allow: /integral-calculator
+

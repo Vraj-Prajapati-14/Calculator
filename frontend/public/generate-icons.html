@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator - Calculator Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+        }
+        .button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .button:hover {
+            background: #764ba2;
+        }
+        .preview {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .preview img {
+            border: 2px solid #ddd;
+            margin: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculator Hub - Icon Generator</h1>
+        <p>Click the buttons below to generate and download icon files from logo.svg</p>
+        
+        <div class="preview">
+            <h3>Preview:</h3>
+            <img id="preview" src="logo.svg" alt="Logo Preview" style="max-width: 200px;">
+        </div>
+        
+        <div>
+            <button class="button" onclick="generateIcon(32, 'favicon.png')">Generate favicon.png (32x32)</button>
+            <button class="button" onclick="generateIcon(192, 'logo192.png')">Generate logo192.png (192x192)</button>
+            <button class="button" onclick="generateIcon(512, 'logo512.png')">Generate logo512.png (512x512)</button>
+            <button class="button" onclick="generateIcon(32, 'favicon.ico')">Generate favicon.ico (32x32)</button>
+        </div>
+        
+        <div id="status" style="margin-top: 20px; color: #10b981;"></div>
+    </div>
+
+    <script>
+        async function generateIcon(size, filename) {
+            const status = document.getElementById('status');
+            status.textContent = 'Generating...';
+            
+            try {
+                // Load SVG
+                const response = await fetch('logo.svg');
+                const svgText = await response.text();
+                
+                // Create image from SVG
+                const img = new Image();
+                const svgBlob = new Blob([svgText], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(svgBlob);
+                
+                img.onload = function() {
+                    // Create canvas
+                    const canvas = document.createElement('canvas');
+                    canvas.width = size;
+                    canvas.height = size;
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Draw image to canvas
+                    ctx.drawImage(img, 0, 0, size, size);
+                    
+                    // Convert to blob and download
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        
+                        status.textContent = `✓ Generated and downloaded ${filename}`;
+                        setTimeout(() => {
+                            status.textContent = '';
+                        }, 3000);
+                    }, 'image/png');
+                    
+                    URL.revokeObjectURL(url);
+                };
+                
+                img.src = url;
+            } catch (error) {
+                status.textContent = 'Error: ' + error.message;
+                status.style.color = '#ef4444';
+            }
+        }
+    </script>
+</body>
+</html>
+

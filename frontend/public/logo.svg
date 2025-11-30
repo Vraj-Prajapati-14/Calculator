@@ -1,0 +1,63 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="512" height="512" rx="100" fill="url(#gradient)"/>
+  
+  <!-- Calculator body shadow -->
+  <rect x="96" y="96" width="320" height="320" rx="24" fill="rgba(0,0,0,0.1)"/>
+  
+  <!-- Calculator body -->
+  <rect x="80" y="80" width="320" height="320" rx="24" fill="white"/>
+  
+  <!-- Screen -->
+  <rect x="100" y="100" width="280" height="60" rx="8" fill="#1f2937"/>
+  <rect x="110" y="110" width="260" height="40" rx="4" fill="#111827"/>
+  
+  <!-- Display text -->
+  <text x="240" y="140" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#10b981" text-anchor="middle">123</text>
+  
+  <!-- Button grid - simplified for icon -->
+  <!-- Row 1 -->
+  <circle cx="140" cy="200" r="22" fill="#667eea"/>
+  <circle cx="240" cy="200" r="22" fill="#667eea"/>
+  <circle cx="340" cy="200" r="22" fill="#764ba2"/>
+  
+  <!-- Row 2 -->
+  <circle cx="140" cy="260" r="22" fill="#667eea"/>
+  <circle cx="240" cy="260" r="22" fill="#667eea"/>
+  <circle cx="340" cy="260" r="22" fill="#764ba2"/>
+  
+  <!-- Row 3 -->
+  <circle cx="140" cy="320" r="22" fill="#667eea"/>
+  <circle cx="240" cy="320" r="22" fill="#667eea"/>
+  <circle cx="340" cy="320" r="22" fill="#764ba2"/>
+  
+  <!-- Row 4 - wide button -->
+  <rect x="120" y="340" width="120" height="44" rx="22" fill="#667eea"/>
+  <circle cx="280" cy="362" r="22" fill="#667eea"/>
+  <circle cx="360" cy="362" r="22" fill="#764ba2"/>
+  
+  <!-- Button symbols -->
+  <text x="140" y="208" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">7</text>
+  <text x="240" y="208" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">8</text>
+  <text x="340" y="208" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">÷</text>
+  
+  <text x="140" y="268" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">4</text>
+  <text x="240" y="268" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">5</text>
+  <text x="340" y="268" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">×</text>
+  
+  <text x="140" y="328" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">1</text>
+  <text x="240" y="328" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">2</text>
+  <text x="340" y="328" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">−</text>
+  
+  <text x="180" y="370" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">0</text>
+  <text x="280" y="370" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">.</text>
+  <text x="360" y="370" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">+</text>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
