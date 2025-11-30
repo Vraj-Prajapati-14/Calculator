@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
 import FAQ from '../components/FAQ/FAQ';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
-import { derivative, parse, simplify } from 'mathjs';
 import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const IntegralCalculator = () => {
   const [expression, setExpression] = useState('');
@@ -65,44 +65,16 @@ const IntegralCalculator = () => {
     ]
   };
 
-  const faqs = [
-    {
-      question: "Is this integral calculator free to use?",
-      answer: "Yes! Our integral calculator is completely FREE to use. No signup, no registration, no hidden fees. Calculate integrals instantly without any cost."
-    },
-    {
-      question: "Can students use this calculator for calculus homework?",
-      answer: "Absolutely! Our integral calculator is perfect for calculus students. It's free, easy to use, accurate, and provides step-by-step solutions to help you understand integration. Great for homework, exams, and learning."
-    },
-    {
-      question: "What types of integrals can this calculator solve?",
-      answer: "Our free integral calculator can solve polynomial integrals, trigonometric integrals, exponential integrals, and more. It supports both definite and indefinite integrals with step-by-step solutions."
-    },
-    {
-      question: "Is this the best integral calculator online?",
-      answer: "Yes! Our integral calculator is one of the best free online calculators. It's fast, accurate, easy to use, and provides educational step-by-step solutions. Perfect for students, teachers, and professionals."
-    },
-    {
-      question: "Do I need to sign up to use this calculator?",
-      answer: "No signup required! You can use our free integral calculator immediately without creating an account. Just enter your expression and get instant results."
-    },
-    {
-      question: "How accurate is this integral calculator?",
-      answer: "Our integral calculator is highly accurate and uses advanced mathematical algorithms to ensure precise calculations. All results are calculated with proper precision for reliable results."
-    }
-  ];
-
+  const faqs = generateCalculatorFAQs('Integral Calculator', 'calculus');
   const faqSchema = generateFAQSchema(faqs);
 
-  // Basic integration rules
-  const basicIntegrationRules = {
-    'power': 'ʃ x^n dx = x^(n+1)/(n+1) + C',
-    'constant': 'ʃ k dx = kx + C',
-    'exponential': 'ʃ e^x dx = e^x + C',
-    'sin': 'ʃ sin(x) dx = -cos(x) + C',
-    'cos': 'ʃ cos(x) dx = sin(x) + C',
-    'ln': 'ʃ 1/x dx = ln|x| + C'
-  };
+  // Integration rules reference (for documentation)
+  // Power: ʃ x^n dx = x^(n+1)/(n+1) + C
+  // Constant: ʃ k dx = kx + C
+  // Exponential: ʃ e^x dx = e^x + C
+  // Sin: ʃ sin(x) dx = -cos(x) + C
+  // Cos: ʃ cos(x) dx = sin(x) + C
+  // Ln: ʃ 1/x dx = ln|x| + C
 
   const integratePolynomial = (expr) => {
     try {

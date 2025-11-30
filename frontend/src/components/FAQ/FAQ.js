@@ -1,5 +1,4 @@
 import React from 'react';
-import SEO from '../SEO/SEO';
 
 /**
  * FAQ Component for AI/LLM Optimization
