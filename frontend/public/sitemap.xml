@@ -2,127 +2,127 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://calculator-hubs.vercel.app/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/basic-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/basic-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/percentage-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/percentage-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/gpa-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/gpa-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/grade-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/grade-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/weighted-grade-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/weighted-grade-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/average-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/average-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/ratio-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/ratio-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/factorial-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/factorial-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/lcm-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/lcm-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/matrix-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/matrix-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/linear-equation-solver</loc>
+    <loc>https://calculator-hubs.vercel.app/linear-equation-solver</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/quadratic-equation-solver</loc>
+    <loc>https://calculator-hubs.vercel.app/quadratic-equation-solver</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/statistics-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/statistics-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/standard-deviation-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/standard-deviation-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/permutation-combination-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/permutation-combination-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/trigonometry-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/trigonometry-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/fraction-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/fraction-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/algebra-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/algebra-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/derivative-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/derivative-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/integral-calculator</loc>
+    <loc>https://calculator-hubs.vercel.app/integral-calculator</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
