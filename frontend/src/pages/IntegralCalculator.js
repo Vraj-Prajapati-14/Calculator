@@ -3,7 +3,7 @@ import SEO from '../components/SEO/SEO';
 import FAQ from '../components/FAQ/FAQ';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import { generateFAQSchema } from '../utils/seoKeywords';
-import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
+import { generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const IntegralCalculator = () => {
   const [expression, setExpression] = useState('');
