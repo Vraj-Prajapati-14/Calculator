@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const StandardDeviationCalculator = () => {
   const [numbers, setNumbers] = useState('');
@@ -34,23 +38,35 @@ const StandardDeviationCalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['standard-deviation-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Standard Deviation Calculator',
+    seoData.description,
+    'https://yourdomain.com/standard-deviation-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Standard Deviation Calculator', 'statistics');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Standard Deviation Calculator - Calculate SD & Variance"
-        description="Free standard deviation calculator. Calculate population and sample standard deviation with variance."
-        keywords="standard deviation calculator, variance calculator, SD calculator, statistics"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/standard-deviation-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Standard Deviation Calculator</h1>
-          <p>Calculate standard deviation and variance</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Standard Deviation Calculator">
+          <article className="calculator-card">
             <h2>Calculate Standard Deviation</h2>
             
             <div className="form-group">
@@ -102,10 +118,10 @@ const StandardDeviationCalculator = () => {
                 </div>
               </>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Standard Deviation Calculator">
           <h2>About Standard Deviation</h2>
           <p>Standard deviation measures how spread out numbers are from the mean. A low standard deviation means values are close to the mean, while a high standard deviation means they are spread out.</p>
           <h3>Formula</h3>
@@ -114,9 +130,11 @@ const StandardDeviationCalculator = () => {
             <br />
             s = √(Σ(x - x̄)² / (n-1))  (Sample)
           </div>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Standard Deviation Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

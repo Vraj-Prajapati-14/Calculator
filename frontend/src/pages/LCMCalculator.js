@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const LCMCalculator = () => {
   const [numbers, setNumbers] = useState('');
   const [result, setResult] = useState(null);
   const [steps, setSteps] = useState([]);
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "LCM Calculator - Least Common Multiple & HCF Calculator",
-    "description": "Free LCM and HCF calculator. Find the Least Common Multiple and Highest Common Factor of numbers with step-by-step solutions.",
-    "url": "https://yourdomain.com/lcm-calculator"
-  };
+  const seoData = calculatorSEOData['lcm-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'LCM Calculator',
+    seoData.description,
+    'https://yourdomain.com/lcm-calculator'
+  );
+  const faqs = generateCalculatorFAQs('LCM Calculator', 'math');
+  const faqSchema = generateFAQSchema(faqs);
 
   const gcd = (a, b) => {
     return b === 0 ? a : gcd(b, a % b);
@@ -104,23 +109,25 @@ const LCMCalculator = () => {
   };
 
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="LCM Calculator - Calculate LCM and HCF/GCD Online"
-        description="Free LCM and HCF calculator. Find the Least Common Multiple (LCM) and Highest Common Factor (HCF/GCD) of numbers with step-by-step solutions."
-        keywords="LCM calculator, HCF calculator, GCD calculator, least common multiple, highest common factor, greatest common divisor"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/lcm-calculator"
         structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>LCM & HCF Calculator</h1>
-          <p>Calculate Least Common Multiple and Highest Common Factor</p>
-        </div>
+      <main className="calculator-page" role="main">
+          <header className="page-header">
+            <h1>{seoData.h1}</h1>
+            <p>{seoData.subtitle}</p>
+          </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="LCM Calculator">
+          <article className="calculator-card">
             <h2>Calculate LCM and HCF</h2>
             
             <div className="form-group">
@@ -175,10 +182,10 @@ const LCMCalculator = () => {
                 ))}
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section">
           <h2>About LCM and HCF</h2>
           
           <h3>What is LCM (Least Common Multiple)?</h3>
@@ -253,9 +260,11 @@ const LCMCalculator = () => {
             <li>HCF is always a factor of LCM</li>
             <li>For coprime numbers (no common factors except 1), HCF = 1 and LCM = a × b</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="LCM Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

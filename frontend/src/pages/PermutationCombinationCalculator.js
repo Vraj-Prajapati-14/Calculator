@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const PermutationCombinationCalculator = () => {
   const [n, setN] = useState('');
@@ -44,23 +48,35 @@ const PermutationCombinationCalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['permutation-combination-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Permutation & Combination Calculator',
+    seoData.description,
+    'https://yourdomain.com/permutation-combination-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Permutation & Combination Calculator', 'math');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Permutation & Combination Calculator - nPr and nCr Calculator"
-        description="Free permutation and combination calculator. Calculate nPr and nCr with step-by-step solutions."
-        keywords="permutation calculator, combination calculator, nPr, nCr, factorial"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/permutation-combination-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Permutation & Combination Calculator</h1>
-          <p>Calculate nPr and nCr</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Permutation & Combination Calculator">
+          <article className="calculator-card">
             <h2>Calculate P(n,r) and C(n,r)</h2>
             
             <div className="input-grid">
@@ -121,10 +137,10 @@ const PermutationCombinationCalculator = () => {
                 </div>
               </>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Permutation & Combination Calculator">
           <h2>About Permutations & Combinations</h2>
           
           <h3>Permutations (Order Matters)</h3>
@@ -145,9 +161,11 @@ const PermutationCombinationCalculator = () => {
             <li><strong>Permutation:</strong> P(5,3) = 60 (different arrangements)</li>
             <li><strong>Combination:</strong> C(5,3) = 10 (just groups)</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Permutation & Combination Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

@@ -170,9 +170,9 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="Calculator Hub - Free Online Math Calculators | Scientific Calculator"
-        description="Free online calculators for all your math needs. Calculate percentages, GPA, derivatives, integrals, statistics, and more. Fast, accurate, and easy to use."
-        keywords="calculator, math calculator, scientific calculator, percentage calculator, GPA calculator, integral calculator, derivative calculator, statistics calculator, free calculator online"
+        title="FREE Calculator Hub - Best Easy Accurate Online Math Calculators for Students | 20+ Free Tools"
+        description="FREE Calculator Hub - Best, easy, and accurate online math calculators for students, teachers & professionals. 20+ free calculators including percentage, GPA, scientific, derivative, integral calculators. Fast, accurate, step-by-step solutions. No signup required!"
+        keywords="free calculator, best calculator, easy calculator, accurate calculator, calculator for students, calculator for college, online calculator, math calculator, scientific calculator, percentage calculator, GPA calculator, free online calculator, best calculator website, easy calculator for students, calculator no signup, free math tools, calculator hub"
         canonicalUrl="/"
         structuredData={structuredData}
       />
@@ -180,9 +180,9 @@ const Home = () => {
       <div className="home-page">
         <section className="hero">
           <div className="hero-content">
-            <h1>Free Online Calculators</h1>
+            <h1>FREE Calculator Hub - Best Easy Accurate Online Math Calculators for Students</h1>
             <p className="hero-subtitle">
-              Your ultimate destination for all mathematical calculations. Fast, accurate, and easy to use.
+              Your ultimate FREE destination for all mathematical calculations. Fast, accurate, easy to use, and perfect for students, teachers, and professionals.
             </p>
             <p className="hero-description">
               From basic arithmetic to advanced calculus, we've got you covered with 20+ specialized calculators.

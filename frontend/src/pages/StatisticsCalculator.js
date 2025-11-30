@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const StatisticsCalculator = () => {
   const [numbers, setNumbers] = useState('');
@@ -47,23 +51,35 @@ const StatisticsCalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['statistics-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Statistics Calculator',
+    seoData.description,
+    'https://yourdomain.com/statistics-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Statistics Calculator', 'statistics');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Statistics Calculator - Calculate Mean, Median, Mode, Variance"
-        description="Free statistics calculator. Calculate mean, median, mode, standard deviation, variance, and more statistical measures."
-        keywords="statistics calculator, mean, median, mode, variance, standard deviation"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/statistics-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Statistics Calculator</h1>
-          <p>Calculate statistical measures for your data</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Statistics Calculator">
+          <article className="calculator-card">
             <h2>Calculate Statistics</h2>
             
             <div className="form-group">
@@ -95,10 +111,10 @@ const StatisticsCalculator = () => {
                 <div className="result-item"><strong>Std Deviation:</strong> {result.stdDev}</div>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section">
           <h2>About Statistics</h2>
           <p>Statistics is the science of collecting, analyzing, and interpreting data. This calculator computes various statistical measures that help describe and understand data distributions.</p>
           <h3>Statistical Measures</h3>
@@ -109,9 +125,11 @@ const StatisticsCalculator = () => {
             <li><strong>Variance:</strong> Measure of spread</li>
             <li><strong>Standard Deviation:</strong> Square root of variance</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Statistics Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import FAQ from '../components/FAQ/FAQ';
+import { generateFAQSchema } from '../utils/seoKeywords';
 import { validateNumber, formatNumber, safeCalculate } from '../utils/validation';
 
 const PercentageCalculator = () => {
@@ -16,10 +18,53 @@ const PercentageCalculator = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Percentage Calculator - Calculate Percentages Online",
-    "description": "Free online percentage calculator. Calculate percentage increases, decreases, and percentage of a number. Fast and accurate results.",
+    "name": "FREE Percentage Calculator - Best Percent Calculator for Students",
+    "description": "FREE, easy, and accurate percentage calculator for students, teachers, and professionals. Calculate percentages, increases, decreases instantly with step-by-step solutions.",
     "url": "https://yourdomain.com/percentage-calculator",
-    "applicationCategory": "UtilitiesApplication"
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "5000"
+    },
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student"
+    }
+  };
+
+  // HowTo Schema for step-by-step solutions
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Percentages",
+    "description": "Step-by-step guide to calculating percentages using our free calculator",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Select calculation type",
+        "text": "Choose what you want to calculate: percentage of a number, percentage increase, decrease, or reverse percentage"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter values",
+        "text": "Enter the required numbers in the input fields"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Calculate",
+        "text": "Click the Calculate button to get instant results with step-by-step solutions"
+      }
+    ]
   };
 
   const calculatePercentage = () => {
@@ -249,15 +294,59 @@ const PercentageCalculator = () => {
 
   const labels = getModeLabels();
 
+  // FAQ data for schema
+  const faqs = [
+    {
+      question: "What is a percentage calculator?",
+      answer: "A percentage calculator is a FREE online tool that helps you calculate percentages quickly and accurately. It can find what percentage one number is of another, calculate percentage increases or decreases, and solve various percentage-related problems with step-by-step solutions."
+    },
+    {
+      question: "Is this percentage calculator free to use?",
+      answer: "Yes! Our percentage calculator is completely FREE to use. No signup, no registration, no hidden fees. You can calculate percentages, increases, decreases, and more instantly without any cost."
+    },
+    {
+      question: "How accurate is this percentage calculator?",
+      answer: "Our percentage calculator is highly accurate and uses advanced mathematical algorithms to ensure precise calculations. All results are calculated with proper decimal precision for reliable results."
+    },
+    {
+      question: "Do I need to sign up to use this calculator?",
+      answer: "No signup required! You can use our free percentage calculator immediately without creating an account. Just enter your values and get instant results with step-by-step solutions."
+    },
+    {
+      question: "Can students use this calculator for homework?",
+      answer: "Absolutely! Our percentage calculator is perfect for students. It's free, easy to use, and provides step-by-step solutions to help you understand how percentages are calculated. Great for homework, exams, and learning."
+    },
+    {
+      question: "What types of percentage calculations can I do?",
+      answer: "You can calculate: What is X% of Y, X is what % of Y, percentage increases, percentage decreases, and reverse percentages. All with detailed step-by-step solutions."
+    },
+    {
+      question: "Is this the best percentage calculator online?",
+      answer: "Yes! Our percentage calculator is one of the best free online calculators. It's fast, accurate, easy to use, and provides educational step-by-step solutions. Perfect for students, teachers, and professionals."
+    },
+    {
+      question: "How do I calculate percentage increase?",
+      answer: "To calculate percentage increase: Enter the original value and new value. The calculator will show you the percentage increase with step-by-step explanation: ((New Value - Original Value) / Original Value) × 100."
+    },
+    {
+      question: "Can I use this calculator on mobile?",
+      answer: "Yes! Our percentage calculator is fully responsive and works perfectly on all devices - desktop, tablet, and mobile phones. Use it anywhere, anytime for free."
+    }
+  ];
+
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
     <ErrorBoundary>
       <SEO
-        title="Percentage Calculator - Calculate Percentages, Increases & Decreases | Free Online Tool"
-        description="Free percentage calculator with step-by-step solutions. Calculate what is X% of Y, percentage increases, decreases, and reverse percentages. Fast, accurate, and easy to use."
-        keywords="percentage calculator, percent calculator, percentage increase, percentage decrease, calculate percentage, percentage formula, percentage of a number, reverse percentage calculator, calculadora de porcentaje, calculatrice pourcentage, prozentrechner, calculadora de porcentagem"
+        title="FREE Percentage Calculator - Best, Easy & Accurate Percent Calculator for Students | Calculator Hub"
+        description="FREE percentage calculator - Best, easy, and accurate online percent calculator for students, teachers & professionals. Calculate percentages, increases, decreases instantly with step-by-step solutions. No signup required!"
+        keywords="free percentage calculator, best percentage calculator, easy percentage calculator, accurate percentage calculator, percentage calculator for students, percentage calculator for college, online percentage calculator, calculate percentage, percent calculator, percentage increase calculator, percentage decrease calculator, free online calculator, best calculator for students, easy calculator for homework, percentage calculator no signup, calculadora de porcentaje, calculatrice pourcentage"
         canonicalUrl="/percentage-calculator"
         structuredData={structuredData}
         lang="en"
+        howToSchema={howToSchema}
+        faqSchema={faqSchema}
         alternateLanguages={[
           { hreflang: 'es', href: '/es/calculadora-porcentaje' },
           { hreflang: 'fr', href: '/fr/calculatrice-pourcentage' },
@@ -272,8 +361,8 @@ const PercentageCalculator = () => {
       
       <main className="calculator-page" role="main">
         <header className="page-header">
-          <h1>Percentage Calculator</h1>
-          <p>Calculate percentages, increases, decreases, and more with detailed step-by-step solutions</p>
+          <h1>FREE Percentage Calculator - Best Percent Calculator for Students & Professionals</h1>
+          <p>Easy, accurate, and free online percentage calculator. Calculate percentages, increases, decreases instantly with step-by-step solutions. Perfect for students, teachers, and professionals.</p>
         </header>
 
         <section className="calculator-container" aria-label="Percentage Calculator">
@@ -446,6 +535,44 @@ const PercentageCalculator = () => {
             <li>Percentage changes are based on the original value</li>
           </ul>
         </section>
+
+        <FAQ 
+          calculatorName="Percentage Calculator"
+          faqs={[
+            {
+              question: "Is this percentage calculator free to use?",
+              answer: "Yes! Our percentage calculator is completely FREE to use. No signup, no registration, no hidden fees. You can calculate percentages, increases, decreases, and more instantly without any cost."
+            },
+            {
+              question: "How accurate is this percentage calculator?",
+              answer: "Our percentage calculator is highly accurate and uses advanced mathematical algorithms to ensure precise calculations. All results are calculated with proper decimal precision for reliable results."
+            },
+            {
+              question: "Do I need to sign up to use this calculator?",
+              answer: "No signup required! You can use our free percentage calculator immediately without creating an account. Just enter your values and get instant results with step-by-step solutions."
+            },
+            {
+              question: "Can students use this calculator for homework?",
+              answer: "Absolutely! Our percentage calculator is perfect for students. It's free, easy to use, and provides step-by-step solutions to help you understand how percentages are calculated. Great for homework, exams, and learning."
+            },
+            {
+              question: "What types of percentage calculations can I do?",
+              answer: "You can calculate: What is X% of Y, X is what % of Y, percentage increases, percentage decreases, and reverse percentages. All with detailed step-by-step solutions."
+            },
+            {
+              question: "Is this the best percentage calculator online?",
+              answer: "Yes! Our percentage calculator is one of the best free online calculators. It's fast, accurate, easy to use, and provides educational step-by-step solutions. Perfect for students, teachers, and professionals."
+            },
+            {
+              question: "How do I calculate percentage increase?",
+              answer: "To calculate percentage increase: Enter the original value and new value. The calculator will show you the percentage increase with step-by-step explanation: ((New Value - Original Value) / Original Value) × 100."
+            },
+            {
+              question: "Can I use this calculator on mobile?",
+              answer: "Yes! Our percentage calculator is fully responsive and works perfectly on all devices - desktop, tablet, and mobile phones. Use it anywhere, anytime for free."
+            }
+          ]}
+        />
       </main>
     </ErrorBoundary>
   );

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const WeightedGradeCalculator = () => {
   const [categories, setCategories] = useState([
@@ -56,16 +60,28 @@ const WeightedGradeCalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['weighted-grade-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Weighted Grade Calculator',
+    seoData.description,
+    'https://yourdomain.com/weighted-grade-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Weighted Grade Calculator', 'education');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Weighted Grade Calculator - Calculate Weighted Grades"
-        description="Free weighted grade calculator. Calculate your final grade with different category weights. Perfect for courses with weighted grading systems."
-        keywords="weighted grade calculator, weighted average, grade calculator, course grade"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/weighted-grade-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
+      <main className="calculator-page" role="main">
         <div className="page-header">
           <h1>Weighted Grade Calculator</h1>
           <p>Calculate final grades with different category weights</p>
@@ -148,7 +164,7 @@ const WeightedGradeCalculator = () => {
           </div>
         </div>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Weighted Grade Calculator">
           <h2>About Weighted Grade Calculator</h2>
           <p>
             A weighted grade calculator helps you calculate your final grade when different categories 
@@ -174,9 +190,11 @@ const WeightedGradeCalculator = () => {
             <li>Enter scores as percentages (0-100)</li>
             <li>Include all graded categories from your syllabus</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Weighted Grade Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

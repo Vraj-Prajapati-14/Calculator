@@ -1,9 +1,10 @@
+# Robots.txt for Calculator Hub
+# Optimized for maximum search engine crawling
+
 User-agent: *
 Allow: /
-Sitemap: https://yourdomain.com/sitemap.xml
 
-# Allow all calculators
-Allow: /calculator/*
+# Allow all calculator pages
 Allow: /basic-calculator
 Allow: /percentage-calculator
 Allow: /gpa-calculator
@@ -24,4 +25,52 @@ Allow: /fraction-calculator
 Allow: /algebra-calculator
 Allow: /derivative-calculator
 Allow: /integral-calculator
+
+# Allow language versions (when implemented)
+Allow: /es/*
+Allow: /fr/*
+Allow: /de/*
+Allow: /pt/*
+Allow: /hi/*
+Allow: /ar/*
+Allow: /zh/*
+Allow: /ja/*
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Allow important resources
+Allow: /static/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Sitemap location
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Crawl-delay (optional, remove if not needed)
+# Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
 

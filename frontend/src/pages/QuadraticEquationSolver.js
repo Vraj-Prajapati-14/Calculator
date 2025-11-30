@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema, generateHowToSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const QuadraticEquationSolver = () => {
   const [a, setA] = useState('');
@@ -85,23 +89,40 @@ const QuadraticEquationSolver = () => {
     setResult({ ...solution, steps });
   };
 
+  const seoData = calculatorSEOData['quadratic-equation-solver'];
+  const structuredData = generateCalculatorStructuredData(
+    'Quadratic Equation Solver',
+    seoData.description,
+    'https://yourdomain.com/quadratic-equation-solver'
+  );
+  const faqs = generateCalculatorFAQs('Quadratic Equation Solver', 'algebra');
+  const faqSchema = generateFAQSchema(faqs);
+  const howToSchema = generateHowToSchema('Quadratic Equation Solver', [
+    { name: 'Enter coefficients', description: 'Enter values for a, b, and c in the equation ax² + bx + c = 0', url: '' },
+    { name: 'Calculate', description: 'Click Solve Equation to get solutions with step-by-step explanation', url: '' }
+  ]);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Quadratic Equation Solver - Solve Quadratic Equations Online"
-        description="Free quadratic equation solver. Solve equations of the form ax² + bx + c = 0 with step-by-step solutions using the quadratic formula."
-        keywords="quadratic equation solver, quadratic formula, solve quadratic, algebra calculator"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/quadratic-equation-solver"
+        structuredData={structuredData}
+        lang="en"
+        howToSchema={howToSchema}
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Quadratic Equation Solver</h1>
-          <p>Solve quadratic equations using the quadratic formula</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Quadratic Equation Solver">
+          <article className="calculator-card">
             <h2>Solve Quadratic Equation</h2>
             
             <p style={{ textAlign: 'center', fontSize: '1.3rem', margin: '20px 0', padding: '15px', background: '#f3f4f6', borderRadius: '8px' }}>
@@ -186,10 +207,10 @@ const QuadraticEquationSolver = () => {
                 )}
               </>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Quadratic Equation Solver">
           <h2>About Quadratic Equations</h2>
           <p>
             A quadratic equation is a second-order polynomial equation in a single variable. 
@@ -217,9 +238,11 @@ const QuadraticEquationSolver = () => {
             <li>x = (5 ± 1) / 2</li>
             <li>x₁ = 3, x₂ = 2</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Quadratic Equation Solver" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

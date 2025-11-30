@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const GPACalculator = () => {
   const [courses, setCourses] = useState([
@@ -7,14 +11,6 @@ const GPACalculator = () => {
   ]);
   const [result, setResult] = useState(null);
   const [scale, setScale] = useState('4.0');
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "GPA Calculator - Calculate Grade Point Average",
-    "description": "Free GPA calculator. Calculate your Grade Point Average with weighted credits. Supports 4.0 and 5.0 GPA scales.",
-    "url": "https://yourdomain.com/gpa-calculator"
-  };
 
   const gradePoints = {
     '4.0': {
@@ -87,24 +83,35 @@ const GPACalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['gpa-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'GPA Calculator',
+    seoData.description,
+    'https://yourdomain.com/gpa-calculator'
+  );
+  const faqs = generateCalculatorFAQs('GPA Calculator', 'education');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="GPA Calculator - Calculate Your Grade Point Average"
-        description="Free GPA calculator with credit hours. Calculate your cumulative GPA, semester GPA with weighted credits. Supports 4.0 and 5.0 scales."
-        keywords="GPA calculator, grade point average, calculate GPA, college GPA, semester GPA, cumulative GPA"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/gpa-calculator"
         structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>GPA Calculator</h1>
-          <p>Calculate your Grade Point Average with credit hours</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>FREE GPA Calculator - Best Grade Point Average Calculator for College Students</h1>
+          <p>Easy, accurate, and free GPA calculator. Calculate your cumulative GPA, semester GPA with weighted credits instantly. Perfect for college students and teachers.</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="GPA Calculator">
+          <article className="calculator-card">
             <h2>Enter Your Courses</h2>
             
             <div className="form-group">
@@ -208,10 +215,10 @@ const GPACalculator = () => {
                 ))}
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About GPA Calculator">
           <h2>About GPA Calculator</h2>
           <p>
             A GPA (Grade Point Average) calculator helps you determine your academic performance by 
@@ -266,9 +273,11 @@ const GPACalculator = () => {
             <li>Study consistently rather than cramming</li>
             <li>Form study groups with classmates</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="GPA Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

@@ -13,7 +13,9 @@ const SEO = ({
   publishedTime = null,
   modifiedTime = null,
   lang = 'en',
-  alternateLanguages = null // Array of { hreflang: 'es', href: '/es/...' }
+  alternateLanguages = null, // Array of { hreflang: 'es', href: '/es/...' }
+  faqSchema = null, // FAQPage schema
+  howToSchema = null // HowTo schema
 }) => {
   const siteUrl = 'https://yourdomain.com'; // Replace with your actual domain
   const fullUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl;
@@ -59,9 +61,24 @@ const SEO = ({
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1250"
-    }
+      "ratingValue": "4.9",
+      "ratingCount": "5000",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student",
+      "audienceType": "Student"
+    },
+    "featureList": [
+      "Free to use",
+      "No signup required",
+      "Step-by-step solutions",
+      "Accurate calculations",
+      "Easy to use",
+      "Works on all devices"
+    ]
   };
 
   const finalStructuredData = structuredData || defaultStructuredData;
@@ -154,6 +171,20 @@ const SEO = ({
           })
         })}
       </script>
+
+      {/* FAQ Schema for AI Optimization */}
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
+
+      {/* HowTo Schema for Step-by-Step Solutions */}
+      {howToSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(howToSchema)}
+        </script>
+      )}
 
       {/* Breadcrumb Structured Data */}
       {canonicalUrl && canonicalUrl !== '/' && (

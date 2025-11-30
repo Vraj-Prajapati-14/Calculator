@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const MatrixCalculator = () => {
   const [rows, setRows] = useState(2);
@@ -40,23 +44,35 @@ const MatrixCalculator = () => {
     setResult(resultMatrix);
   };
 
+  const seoData = calculatorSEOData['matrix-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Matrix Calculator',
+    seoData.description,
+    'https://yourdomain.com/matrix-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Matrix Calculator', 'math');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Matrix Calculator - Matrix Operations Online"
-        description="Free matrix calculator. Perform matrix addition, subtraction, multiplication, and more. Easy-to-use matrix calculator."
-        keywords="matrix calculator, matrix multiplication, matrix addition, linear algebra"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/matrix-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Matrix Calculator</h1>
-          <p>Perform matrix operations easily</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Matrix Calculator">
+          <article className="calculator-card">
             <h2>Matrix Operations</h2>
             
             <div className="form-group">
@@ -120,10 +136,10 @@ const MatrixCalculator = () => {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Matrix Calculator">
           <h2>About Matrix Calculator</h2>
           <p>
             A matrix is a rectangular array of numbers arranged in rows and columns. Matrices are 
@@ -137,9 +153,11 @@ const MatrixCalculator = () => {
             <li><strong>Subtraction:</strong> Subtract corresponding elements</li>
             <li><strong>Multiplication:</strong> Row by column multiplication</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Matrix Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

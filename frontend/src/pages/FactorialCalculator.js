@@ -52,31 +52,35 @@ const FactorialCalculator = () => {
   return (
     <>
       <SEO
-        title="Factorial Calculator - Calculate Factorials Online"
-        description="Free factorial calculator. Calculate factorials (n!) of any number quickly and easily with step-by-step solutions."
-        keywords="factorial calculator, calculate factorial, n factorial, mathematics"
+        title="FREE Factorial Calculator - Best Easy Accurate n! Calculator for Students | Calculator Hub"
+        description="FREE factorial calculator - Best, easy, and accurate n! calculator for students. Calculate factorials quickly with step-by-step solutions. Perfect for math homework and exams. No signup required!"
+        keywords="free factorial calculator, best factorial calculator, easy factorial calculator, factorial calculator for students, calculate factorial, n factorial calculator, factorial calculator for college, free online factorial calculator, best calculator for students, easy calculator for homework, permutation calculator, combination calculator"
         canonicalUrl="/factorial-calculator"
+        lang="en"
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Factorial Calculator</h1>
-          <p>Calculate factorials (n!) quickly and easily</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>FREE Factorial Calculator - Best n! Calculator for Students</h1>
+          <p>Easy, accurate, and free factorial calculator. Calculate factorials (n!) quickly with step-by-step solutions. Perfect for students and math homework.</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Factorial Calculator">
+          <article className="calculator-card">
             <h2>Calculate Factorial</h2>
             
             <div className="form-group">
-              <label>Enter a Number (n)</label>
+              <label htmlFor="factorial-number">Enter a Number (n)</label>
               <input
+                id="factorial-number"
                 type="number"
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
                 placeholder="e.g., 5"
                 min="0"
                 max="170"
+                aria-label="Enter a number to calculate factorial"
+                aria-required="true"
               />
               <small>Enter a non-negative integer (0-170)</small>
             </div>
@@ -86,11 +90,11 @@ const FactorialCalculator = () => {
             </button>
 
             {result && (
-              <div className="result-container">
+              <div className="result-container" role="region" aria-live="polite" aria-label="Calculation result">
                 <h3>Result</h3>
                 <div className="result-item">
                   <strong>{result.number}! =</strong>
-                  <div className="result-value">{result.factorial}</div>
+                  <div className="result-value" aria-label={`Factorial of ${result.number}`}>{result.factorial}</div>
                 </div>
                 {result.exactValue !== 'Too large to display exactly' && (
                   <div className="result-item">
@@ -99,20 +103,21 @@ const FactorialCalculator = () => {
                 )}
                 
                 {result.steps.length > 0 && (
-                  <div style={{ marginTop: '15px' }}>
+                  <section className="steps-container" aria-label="Step-by-step solution" style={{ marginTop: '15px' }}>
+                    <h4>Calculation Steps</h4>
                     {result.steps.map((step, index) => (
                       <div key={index} className="step-formula">
                         {step.value}
                       </div>
                     ))}
-                  </div>
+                  </section>
                 )}
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Factorial Calculator">
           <h2>About Factorial</h2>
           <p>
             The factorial of a non-negative integer n, denoted by n!, is the product of all positive 
@@ -148,8 +153,8 @@ const FactorialCalculator = () => {
             <li>10! = 3,628,800</li>
             <li>20! = 2,432,902,008,176,640,000</li>
           </ul>
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };

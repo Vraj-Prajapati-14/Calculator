@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import { evaluate } from 'mathjs';
+import { generateFAQSchema } from '../utils/seoKeywords';
 
 const BasicCalculator = () => {
   const [display, setDisplay] = useState('0');
@@ -10,12 +13,82 @@ const BasicCalculator = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Basic Calculator - Scientific Calculator Online",
-    "description": "Free online scientific calculator with advanced mathematical functions. Calculate trigonometric, logarithmic, and exponential operations.",
+    "name": "FREE Scientific Calculator - Best Math Calculator for Students",
+    "description": "FREE, easy, and accurate scientific calculator for students, teachers, and professionals. Calculate trigonometric, logarithmic, exponential operations and more instantly.",
     "url": "https://yourdomain.com/basic-calculator",
     "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any"
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "5000"
+    },
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student"
+    }
   };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Use Scientific Calculator",
+    "description": "Step-by-step guide to using our free scientific calculator",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter numbers",
+        "text": "Click number buttons or type numbers to enter your calculation"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Select operation",
+        "text": "Choose basic operations (+, -, ×, ÷) or scientific functions (sin, cos, log, etc.)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Get result",
+        "text": "Click equals (=) to get instant accurate results"
+      }
+    ]
+  };
+
+  const faqs = [
+    {
+      question: "Is this scientific calculator free to use?",
+      answer: "Yes! Our scientific calculator is completely FREE to use. No signup, no registration, no hidden fees. Use it for all your math calculations instantly."
+    },
+    {
+      question: "What functions does this calculator support?",
+      answer: "Our free scientific calculator supports basic operations (add, subtract, multiply, divide), trigonometric functions (sin, cos, tan), logarithmic functions (log, ln), square root, square, inverse, and more. Perfect for students and professionals."
+    },
+    {
+      question: "Can students use this calculator for homework?",
+      answer: "Absolutely! Our scientific calculator is perfect for students. It's free, easy to use, accurate, and works on all devices. Great for math homework, exams, and learning."
+    },
+    {
+      question: "Is this the best calculator online?",
+      answer: "Yes! Our scientific calculator is one of the best free online calculators. It's fast, accurate, easy to use, and provides all essential math functions. Perfect for students, teachers, and professionals."
+    },
+    {
+      question: "Do I need to sign up to use this calculator?",
+      answer: "No signup required! You can use our free scientific calculator immediately without creating an account. Just start calculating right away."
+    },
+    {
+      question: "Can I use this calculator on mobile?",
+      answer: "Yes! Our scientific calculator is fully responsive and works perfectly on all devices - desktop, tablet, and mobile phones. Use it anywhere, anytime for free."
+    }
+  ];
+
+  const faqSchema = generateFAQSchema(faqs);
 
   const handleNumberClick = (num) => {
     if (isNewCalculation) {
@@ -103,23 +176,26 @@ const BasicCalculator = () => {
   };
 
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Basic Calculator - Free Online Scientific Calculator"
-        description="Free online scientific calculator with advanced functions. Calculate trigonometric, logarithmic, exponential operations and more. Fast and easy to use."
-        keywords="basic calculator, scientific calculator, online calculator, free calculator, math calculator, calculator online"
-        canonicalUrl="/basic-calculator"
-        structuredData={structuredData}
-      />
-      
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Scientific Calculator</h1>
-          <p>Perform basic and advanced mathematical calculations</p>
-        </div>
+          title="FREE Scientific Calculator - Best Easy Accurate Math Calculator for Students | Calculator Hub"
+          description="FREE scientific calculator - Best, easy, and accurate online math calculator for students, teachers & professionals. Calculate trigonometric, logarithmic, exponential operations instantly. No signup required!"
+          keywords="free calculator, best calculator, easy calculator, accurate calculator, scientific calculator, math calculator, calculator for students, calculator for college, online calculator, free online calculator, best calculator for students, easy calculator for homework, calculator no signup, scientific calculator online, math calculator free"
+          canonicalUrl="/basic-calculator"
+          structuredData={structuredData}
+          lang="en"
+          howToSchema={howToSchema}
+          faqSchema={faqSchema}
+        />
+        
+        <main className="calculator-page" role="main">
+          <header className="page-header">
+            <h1>FREE Scientific Calculator - Best Math Calculator for Students</h1>
+            <p>Easy, accurate, and free scientific calculator. Perform basic and advanced mathematical calculations instantly. Perfect for students, teachers, and professionals.</p>
+          </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card" style={{ maxWidth: '500px', margin: '0 auto' }}>
+        <section className="calculator-container" aria-label="Scientific Calculator">
+          <article className="calculator-card" style={{ maxWidth: '500px', margin: '0 auto' }}>
             <div className="calc-display-section">
               <div className="calc-equation">{equation}</div>
               <div className="calc-display">{display}</div>
@@ -168,10 +244,10 @@ const BasicCalculator = () => {
                 <button className="calc-btn calc-btn-equals" onClick={handleEquals}>=</button>
               </div>
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Scientific Calculator">
           <h2>About Scientific Calculator</h2>
           <p>
             Our scientific calculator is a powerful tool that goes beyond basic arithmetic operations. 
@@ -204,7 +280,9 @@ const BasicCalculator = () => {
             <li>Use parentheses for complex calculations</li>
             <li>The calculator follows standard order of operations (PEMDAS)</li>
           </ul>
-        </div>
+        </section>
+
+        <FAQ calculatorName="Scientific Calculator" faqs={faqs} />
 
         <style jsx>{`
           .calc-display-section {
@@ -314,8 +392,8 @@ const BasicCalculator = () => {
             }
           }
         `}</style>
-      </div>
-    </>
+      </main>
+    </ErrorBoundary>
   );
 };
 

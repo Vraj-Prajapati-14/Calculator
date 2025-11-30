@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const GradeCalculator = () => {
   const [assignments, setAssignments] = useState([
@@ -7,13 +11,14 @@ const GradeCalculator = () => {
   ]);
   const [result, setResult] = useState(null);
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Grade Calculator - Calculate Your Final Grade",
-    "description": "Free grade calculator. Calculate your final grade based on test scores, assignments, and other assessments.",
-    "url": "https://yourdomain.com/grade-calculator"
-  };
+  const seoData = calculatorSEOData['grade-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Grade Calculator',
+    seoData.description,
+    'https://yourdomain.com/grade-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Grade Calculator', 'education');
+  const faqSchema = generateFAQSchema(faqs);
 
   const addAssignment = () => {
     setAssignments([...assignments, { name: '', score: '', maxScore: '' }]);
@@ -67,22 +72,25 @@ const GradeCalculator = () => {
 
   return (
     <>
-      <SEO
-        title="Grade Calculator - Calculate Your Final Course Grade"
-        description="Free grade calculator. Calculate your final grade based on test scores, assignments, quizzes, and other assessments. Get letter grade and percentage."
-        keywords="grade calculator, final grade calculator, course grade, test score calculator, assignment grade"
-        canonicalUrl="/grade-calculator"
-        structuredData={structuredData}
-      />
-      
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Grade Calculator</h1>
-          <p>Calculate your final grade based on your scores</p>
-        </div>
+      <ErrorBoundary>
+        <SEO
+          title={seoData.title}
+          description={seoData.description}
+          keywords={seoData.keywords}
+          canonicalUrl="/grade-calculator"
+          structuredData={structuredData}
+          lang="en"
+          faqSchema={faqSchema}
+        />
+        
+        <main className="calculator-page" role="main">
+          <header className="page-header">
+            <h1>{seoData.h1}</h1>
+            <p>{seoData.subtitle}</p>
+          </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Grade Calculator">
+          <article className="calculator-card">
             <h2>Enter Your Assignments/Tests</h2>
 
             {assignments.map((assignment, index) => (
@@ -149,10 +157,10 @@ const GradeCalculator = () => {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section">
           <h2>About Grade Calculator</h2>
           <p>
             A grade calculator helps you determine your overall grade by combining scores from 
@@ -181,8 +189,11 @@ const GradeCalculator = () => {
             <li>Double-check your entered scores for accuracy</li>
             <li>Consider extra credit if applicable</li>
           </ul>
-        </div>
-      </div>
+        </section>
+
+        <FAQ calculatorName="Grade Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
     </>
   );
 };

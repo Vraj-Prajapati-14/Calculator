@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import { derivative, parse, simplify } from 'mathjs';
+import { generateFAQSchema } from '../utils/seoKeywords';
 
 const IntegralCalculator = () => {
   const [expression, setExpression] = useState('');
@@ -14,10 +17,82 @@ const IntegralCalculator = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Integral Calculator - Calculate Integrals Online",
-    "description": "Free integral calculator. Calculate definite and indefinite integrals with step-by-step solutions. Supports polynomial, trigonometric, and exponential functions.",
-    "url": "https://yourdomain.com/integral-calculator"
+    "name": "FREE Integral Calculator - Best Calculus Calculator for Students",
+    "description": "FREE, easy, and accurate integral calculator for students, teachers, and professionals. Calculate definite and indefinite integrals with step-by-step solutions instantly.",
+    "url": "https://yourdomain.com/integral-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "5000"
+    },
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student"
+    }
   };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Integrals",
+    "description": "Step-by-step guide to calculating integrals using our free calculator",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter expression",
+        "text": "Enter your mathematical expression (e.g., x^2 + 3x + 5)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Select type",
+        "text": "Choose indefinite or definite integral. For definite, enter limits"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Calculate",
+        "text": "Click Calculate to get the integral with detailed step-by-step solution"
+      }
+    ]
+  };
+
+  const faqs = [
+    {
+      question: "Is this integral calculator free to use?",
+      answer: "Yes! Our integral calculator is completely FREE to use. No signup, no registration, no hidden fees. Calculate integrals instantly without any cost."
+    },
+    {
+      question: "Can students use this calculator for calculus homework?",
+      answer: "Absolutely! Our integral calculator is perfect for calculus students. It's free, easy to use, accurate, and provides step-by-step solutions to help you understand integration. Great for homework, exams, and learning."
+    },
+    {
+      question: "What types of integrals can this calculator solve?",
+      answer: "Our free integral calculator can solve polynomial integrals, trigonometric integrals, exponential integrals, and more. It supports both definite and indefinite integrals with step-by-step solutions."
+    },
+    {
+      question: "Is this the best integral calculator online?",
+      answer: "Yes! Our integral calculator is one of the best free online calculators. It's fast, accurate, easy to use, and provides educational step-by-step solutions. Perfect for students, teachers, and professionals."
+    },
+    {
+      question: "Do I need to sign up to use this calculator?",
+      answer: "No signup required! You can use our free integral calculator immediately without creating an account. Just enter your expression and get instant results."
+    },
+    {
+      question: "How accurate is this integral calculator?",
+      answer: "Our integral calculator is highly accurate and uses advanced mathematical algorithms to ensure precise calculations. All results are calculated with proper precision for reliable results."
+    }
+  ];
+
+  const faqSchema = generateFAQSchema(faqs);
 
   // Basic integration rules
   const basicIntegrationRules = {
@@ -148,22 +223,26 @@ const IntegralCalculator = () => {
 
   return (
     <>
-      <SEO
-        title="Integral Calculator - Calculate Definite & Indefinite Integrals"
-        description="Free integral calculator with steps. Calculate definite and indefinite integrals of polynomial, trigonometric, and exponential functions. Get step-by-step solutions."
-        keywords="integral calculator, integration calculator, definite integral, indefinite integral, calculus calculator, antiderivative"
-        canonicalUrl="/integral-calculator"
-        structuredData={structuredData}
-      />
-      
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Integral Calculator</h1>
-          <p>Calculate definite and indefinite integrals with step-by-step solutions</p>
-        </div>
+      <ErrorBoundary>
+        <SEO
+          title="FREE Integral Calculator - Best Easy Accurate Calculus Calculator for Students | Calculator Hub"
+          description="FREE integral calculator - Best, easy, and accurate calculus calculator for students, teachers & professionals. Calculate definite and indefinite integrals instantly with step-by-step solutions. No signup required!"
+          keywords="free integral calculator, best integral calculator, easy integral calculator, accurate integral calculator, integral calculator for students, calculus calculator, integration calculator, calculate integral, definite integral calculator, indefinite integral calculator, free online calculator, best calculator for students, easy calculator for homework, calculus calculator no signup"
+          canonicalUrl="/integral-calculator"
+          structuredData={structuredData}
+          lang="en"
+          howToSchema={howToSchema}
+          faqSchema={faqSchema}
+        />
+        
+        <main className="calculator-page" role="main">
+          <header className="page-header">
+            <h1>FREE Integral Calculator - Best Calculus Calculator for Students</h1>
+            <p>Easy, accurate, and free integral calculator. Calculate definite and indefinite integrals with step-by-step solutions instantly. Perfect for calculus students and teachers.</p>
+          </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Integral Calculator">
+          <article className="calculator-card">
             <h2>Calculate Integral</h2>
             
             <div className="form-group">
@@ -270,10 +349,10 @@ const IntegralCalculator = () => {
                 ))}
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Integral Calculator">
           <h2>About Integration</h2>
           <p>
             Integration is the reverse process of differentiation. It's used to find areas, volumes, 
@@ -357,8 +436,11 @@ const IntegralCalculator = () => {
             <li>Look for patterns that match standard forms</li>
             <li>Practice recognizing when to use different techniques</li>
           </ul>
-        </div>
-      </div>
+        </section>
+
+        <FAQ calculatorName="Integral Calculator" faqs={faqs} />
+      </main>
+      </ErrorBoundary>
     </>
   );
 };

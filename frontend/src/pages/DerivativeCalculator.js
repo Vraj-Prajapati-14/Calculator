@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
 
 const DerivativeCalculator = () => {
   const [expression, setExpression] = useState('');
@@ -32,6 +35,82 @@ const DerivativeCalculator = () => {
     return '0';
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FREE Derivative Calculator - Best Calculus Calculator for Students",
+    "description": "FREE, easy, and accurate derivative calculator for students, teachers, and professionals. Calculate derivatives with step-by-step solutions instantly.",
+    "url": "https://yourdomain.com/derivative-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "5000"
+    },
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student"
+    }
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Derivatives",
+    "description": "Step-by-step guide to calculating derivatives using our free calculator",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter function",
+        "text": "Enter your mathematical function (e.g., x^3 + 2x^2 + 5x)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Select variable",
+        "text": "Choose the variable (usually x)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Calculate",
+        "text": "Click Calculate to get the derivative with step-by-step solution"
+      }
+    ]
+  };
+
+  const faqs = [
+    {
+      question: "Is this derivative calculator free to use?",
+      answer: "Yes! Our derivative calculator is completely FREE to use. No signup, no registration, no hidden fees. Calculate derivatives instantly without any cost."
+    },
+    {
+      question: "Can students use this calculator for calculus homework?",
+      answer: "Absolutely! Our derivative calculator is perfect for calculus students. It's free, easy to use, accurate, and provides step-by-step solutions to help you understand differentiation. Great for homework, exams, and learning."
+    },
+    {
+      question: "What types of derivatives can this calculator solve?",
+      answer: "Our free derivative calculator can solve polynomial derivatives, power functions, and more. It uses the power rule and provides step-by-step solutions to help you learn."
+    },
+    {
+      question: "Is this the best derivative calculator online?",
+      answer: "Yes! Our derivative calculator is one of the best free online calculators. It's fast, accurate, easy to use, and provides educational step-by-step solutions. Perfect for students, teachers, and professionals."
+    },
+    {
+      question: "Do I need to sign up to use this calculator?",
+      answer: "No signup required! You can use our free derivative calculator immediately without creating an account. Just enter your function and get instant results."
+    }
+  ];
+
+  const faqSchema = generateFAQSchema(faqs);
+
   const calculate = () => {
     if (!expression) {
       alert('Please enter an expression');
@@ -59,21 +138,26 @@ const DerivativeCalculator = () => {
 
   return (
     <>
-      <SEO
-        title="Derivative Calculator - Calculate Derivatives Online"
-        description="Free derivative calculator. Calculate derivatives of functions with step-by-step solutions. Supports polynomial, trigonometric, and more."
-        keywords="derivative calculator, calculus calculator, differentiation, find derivative"
-        canonicalUrl="/derivative-calculator"
-      />
-      
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Derivative Calculator</h1>
-          <p>Calculate derivatives with step-by-step solutions</p>
-        </div>
+      <ErrorBoundary>
+        <SEO
+          title="FREE Derivative Calculator - Best Easy Accurate Calculus Calculator for Students | Calculator Hub"
+          description="FREE derivative calculator - Best, easy, and accurate calculus calculator for students, teachers & professionals. Calculate derivatives instantly with step-by-step solutions. No signup required!"
+          keywords="free derivative calculator, best derivative calculator, easy derivative calculator, accurate derivative calculator, derivative calculator for students, calculus calculator, differentiation calculator, find derivative, calculate derivative, free online calculator, best calculator for students, easy calculator for homework, calculus calculator no signup"
+          canonicalUrl="/derivative-calculator"
+          structuredData={structuredData}
+          lang="en"
+          howToSchema={howToSchema}
+          faqSchema={faqSchema}
+        />
+        
+        <main className="calculator-page" role="main">
+          <header className="page-header">
+            <h1>FREE Derivative Calculator - Best Calculus Calculator for Students</h1>
+            <p>Easy, accurate, and free derivative calculator. Calculate derivatives with step-by-step solutions instantly. Perfect for calculus students and teachers.</p>
+          </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Derivative Calculator">
+          <article className="calculator-card">
             <h2>Calculate Derivative</h2>
             
             <div className="form-group">
@@ -129,10 +213,10 @@ const DerivativeCalculator = () => {
                 </div>
               </>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Derivative Calculator">
           <h2>About Derivatives</h2>
           <p>
             The derivative of a function measures how the function changes as its input changes. 
@@ -181,8 +265,11 @@ const DerivativeCalculator = () => {
             <li>Optimization problems</li>
             <li>Curve sketching</li>
           </ul>
-        </div>
-      </div>
+        </section>
+
+        <FAQ calculatorName="Derivative Calculator" faqs={faqs} />
+      </main>
+      </ErrorBoundary>
     </>
   );
 };

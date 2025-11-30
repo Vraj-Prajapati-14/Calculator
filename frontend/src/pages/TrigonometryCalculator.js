@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const TrigonometryCalculator = () => {
   const [angle, setAngle] = useState('');
@@ -29,23 +33,35 @@ const TrigonometryCalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['trigonometry-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Trigonometry Calculator',
+    seoData.description,
+    'https://yourdomain.com/trigonometry-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Trigonometry Calculator', 'math');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Trigonometry Calculator - Calculate Sin, Cos, Tan Online"
-        description="Free trigonometry calculator. Calculate sine, cosine, tangent, and other trig functions. Supports degrees and radians."
-        keywords="trigonometry calculator, sin cos tan, trig calculator, angle calculator"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/trigonometry-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Trigonometry Calculator</h1>
-          <p>Calculate trigonometric functions</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Trigonometry Calculator">
+          <article className="calculator-card">
             <h2>Calculate Trig Functions</h2>
             
             <div className="form-group">
@@ -83,10 +99,10 @@ const TrigonometryCalculator = () => {
                 <div className="result-item"><strong>cot:</strong> {result.cot}</div>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Trigonometry Calculator">
           <h2>About Trigonometry</h2>
           <p>Trigonometry studies relationships between angles and sides of triangles.</p>
           
@@ -112,9 +128,11 @@ const TrigonometryCalculator = () => {
             <li>60°: sin=0.866, cos=0.5, tan=1.732</li>
             <li>90°: sin=1, cos=0, tan=undefined</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Trigonometry Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

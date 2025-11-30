@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const AverageCalculator = () => {
   const [numbers, setNumbers] = useState('');
@@ -53,23 +57,35 @@ const AverageCalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['average-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Average Calculator',
+    seoData.description,
+    'https://yourdomain.com/average-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Average Calculator', 'statistics');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Average Calculator - Calculate Mean, Median, Mode Online"
-        description="Free average calculator. Calculate mean, median, mode, range and more. Simple and fast statistical calculations."
-        keywords="average calculator, mean calculator, median calculator, mode calculator, statistics"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/average-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Average Calculator</h1>
-          <p>Calculate mean, median, mode, and more</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Average Calculator">
+          <article className="calculator-card">
             <h2>Calculate Average</h2>
             
             <div className="form-group">
@@ -117,10 +133,10 @@ const AverageCalculator = () => {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Average Calculator">
           <h2>About Average Calculator</h2>
           <p>
             An average calculator computes various statistical measures including mean, median, mode, 
@@ -153,9 +169,11 @@ const AverageCalculator = () => {
             <li><strong>Median:</strong> Better when data has outliers or is skewed</li>
             <li><strong>Mode:</strong> Useful for categorical data or finding most common values</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Average Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

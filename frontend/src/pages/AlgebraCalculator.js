@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const AlgebraCalculator = () => {
   const [expression, setExpression] = useState('');
@@ -29,23 +33,35 @@ const AlgebraCalculator = () => {
     }
   };
 
+  const seoData = calculatorSEOData['algebra-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Algebra Calculator',
+    seoData.description,
+    'https://yourdomain.com/algebra-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Algebra Calculator', 'algebra');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Algebra Calculator - Solve Algebraic Expressions Online"
-        description="Free algebra calculator. Simplify algebraic expressions, solve equations, and perform algebraic operations online."
-        keywords="algebra calculator, algebraic expressions, simplify algebra, solve equations"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/algebra-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Algebra Calculator</h1>
-          <p>Simplify and solve algebraic expressions</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Algebra Calculator">
+          <article className="calculator-card">
             <h2>Enter Algebraic Expression</h2>
             
             <div className="form-group">
@@ -91,10 +107,10 @@ const AlgebraCalculator = () => {
                 </ul>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Algebra Calculator">
           <h2>About Algebra</h2>
           <p>
             Algebra is a branch of mathematics that uses symbols and letters to represent numbers 
@@ -140,9 +156,11 @@ const AlgebraCalculator = () => {
             <li><strong>M</strong>ultiplication and <strong>D</strong>ivision (left to right)</li>
             <li><strong>A</strong>ddition and <strong>S</strong>ubtraction (left to right)</li>
           </ol>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Algebra Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

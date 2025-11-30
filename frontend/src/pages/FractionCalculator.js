@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const FractionCalculator = () => {
   const [num1, setNum1] = useState('');
@@ -73,23 +77,35 @@ const FractionCalculator = () => {
     return `${sign}${whole} ${remainder}/${Math.abs(den)}`;
   };
 
+  const seoData = calculatorSEOData['fraction-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Fraction Calculator',
+    seoData.description,
+    'https://yourdomain.com/fraction-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Fraction Calculator', 'math');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Fraction Calculator - Add, Subtract, Multiply, Divide Fractions"
-        description="Free fraction calculator. Add, subtract, multiply and divide fractions with step-by-step solutions. Simplifies results automatically."
-        keywords="fraction calculator, add fractions, multiply fractions, simplify fractions"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/fraction-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Fraction Calculator</h1>
-          <p>Add, subtract, multiply, and divide fractions</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Fraction Calculator">
+          <article className="calculator-card">
             <h2>Calculate Fractions</h2>
             
             <div className="form-group">
@@ -169,10 +185,10 @@ const FractionCalculator = () => {
                 <div className="result-item"><strong>Decimal:</strong> {result.decimal}</div>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Fraction Calculator">
           <h2>About Fractions</h2>
           <p>A fraction represents a part of a whole. It consists of a numerator (top number) and a denominator (bottom number).</p>
           
@@ -196,9 +212,11 @@ const FractionCalculator = () => {
           <h3>Simplifying Fractions</h3>
           <p>Divide both numerator and denominator by their GCD (Greatest Common Divisor).</p>
           <p>Example: 12/18 → GCD=6 → 2/3</p>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Fraction Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO/SEO';
+import FAQ from '../components/FAQ/FAQ';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import { generateFAQSchema } from '../utils/seoKeywords';
+import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const RatioCalculator = () => {
   const [value1, setValue1] = useState('');
@@ -29,23 +33,35 @@ const RatioCalculator = () => {
     });
   };
 
+  const seoData = calculatorSEOData['ratio-calculator'];
+  const structuredData = generateCalculatorStructuredData(
+    'Ratio Calculator',
+    seoData.description,
+    'https://yourdomain.com/ratio-calculator'
+  );
+  const faqs = generateCalculatorFAQs('Ratio Calculator', 'math');
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
-    <>
+    <ErrorBoundary>
       <SEO
-        title="Ratio Calculator - Simplify and Calculate Ratios"
-        description="Free ratio calculator. Simplify ratios, calculate ratio values, and convert ratios to percentages and decimals."
-        keywords="ratio calculator, simplify ratio, ratio to percentage, proportion calculator"
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         canonicalUrl="/ratio-calculator"
+        structuredData={structuredData}
+        lang="en"
+        faqSchema={faqSchema}
       />
       
-      <div className="calculator-page">
-        <div className="page-header">
-          <h1>Ratio Calculator</h1>
-          <p>Simplify ratios and calculate proportions</p>
-        </div>
+      <main className="calculator-page" role="main">
+        <header className="page-header">
+          <h1>{seoData.h1}</h1>
+          <p>{seoData.subtitle}</p>
+        </header>
 
-        <div className="calculator-container">
-          <div className="calculator-card">
+        <section className="calculator-container" aria-label="Ratio Calculator">
+          <article className="calculator-card">
             <h2>Calculate Ratio</h2>
             
             <div className="input-grid">
@@ -92,10 +108,10 @@ const RatioCalculator = () => {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="info-section">
+        <section className="info-section" aria-label="About Ratio Calculator">
           <h2>About Ratio Calculator</h2>
           <p>
             A ratio shows the relative sizes of two or more values. Ratios can be simplified by dividing 
@@ -115,9 +131,11 @@ const RatioCalculator = () => {
             <li>Financial ratios</li>
             <li>Mixing solutions</li>
           </ul>
-        </div>
-      </div>
-    </>
+        </section>
+
+        <FAQ calculatorName="Ratio Calculator" faqs={faqs} />
+      </main>
+    </ErrorBoundary>
   );
 };
 
