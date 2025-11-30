@@ -18,25 +18,6 @@ echo ✅ Node.js found
 node --version
 echo.
 
-REM Check if .env exists
-if not exist .env (
-    echo 📝 Creating .env file...
-    (
-        echo PORT=5000
-        echo MONGODB_URI=mongodb://localhost:27017/calculator-hub
-        echo NODE_ENV=development
-    ) > .env
-    echo ✅ .env file created
-    echo.
-)
-
-REM Check if node_modules exists
-if not exist node_modules (
-    echo 📦 Installing backend dependencies...
-    call npm install
-    echo.
-)
-
 REM Check if frontend/node_modules exists
 if not exist frontend\node_modules (
     echo 📦 Installing frontend dependencies...
@@ -47,12 +28,12 @@ if not exist frontend\node_modules (
 )
 
 echo 🚀 Starting Calculator Hub...
-echo Backend: http://localhost:5000
-echo Frontend: http://localhost:3001
+echo Frontend: http://localhost:3000
 echo.
 echo Press Ctrl+C to stop
 echo.
 
 REM Start the application
-npm run dev
+cd frontend
+call npm start
 

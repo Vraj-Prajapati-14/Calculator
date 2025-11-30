@@ -26,7 +26,6 @@ export const ACTION_KEYWORDS = [
 
 // Generate optimized title
 export const generateSEOTitle = (calculatorName, type = 'calculator', audience = 'students') => {
-  const modifiers = MODIFIER_KEYWORDS.primary.slice(0, 3).join(', ');
   const audienceKeyword = AUDIENCE_KEYWORDS[audience]?.[0] || 'for everyone';
   
   return `FREE ${calculatorName} - Best, Easy & Accurate ${type} ${audienceKeyword} | Calculator Hub`;

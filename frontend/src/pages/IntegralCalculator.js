@@ -119,6 +119,7 @@ const IntegralCalculator = () => {
             const newPower = power + 1;
             return `${newCoef.toFixed(3)}x^${newPower}`;
           }
+          return term; // Return original if no match
         }
         // Handle x
         else if (term.includes('x')) {
@@ -129,7 +130,10 @@ const IntegralCalculator = () => {
         // Handle constant
         else {
           const coef = parseFloat(term);
-          return `${coef.toFixed(3)}x`;
+          if (!isNaN(coef)) {
+            return `${coef.toFixed(3)}x`;
+          }
+          return term; // Return original if not a number
         }
       });
       
@@ -194,7 +198,7 @@ const IntegralCalculator = () => {
           });
 
           // For demonstration - simplified calculation
-          const area = `F(${upper}) - F(${lower})`;
+          // const area = `F(${upper}) - F(${lower})`; // Reserved for future use
           
           calculationSteps.push({
             description: 'Calculate Definite Integral',

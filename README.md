@@ -1,6 +1,6 @@
-# Calculator Hub - Comprehensive MERN Calculator Website
+# Calculator Hub - Comprehensive React Calculator Website
 
-A professional, SEO-optimized calculator website built with the MERN stack (MongoDB, Express, React, Node.js). Features 20+ specialized calculators with step-by-step solutions and responsive design.
+A professional, SEO-optimized calculator website built with React. Features 20+ specialized calculators with step-by-step solutions and responsive design.
 
 ## 🚀 Features
 
@@ -40,15 +40,12 @@ A professional, SEO-optimized calculator website built with the MERN stack (Mong
 - 📚 **Educational Content** - Theory and formulas for each calculator
 - 💨 **Fast Performance** - Optimized React components
 - 🔍 **Search Engine Ready** - Built for maximum SEO reach
-- 💾 **Calculation History** - MongoDB backend stores calculations (optional)
 - 🌐 **Clean URLs** - SEO-friendly route structure
 
 ## 📁 Project Structure
 
 ```
 calculator-hub/
-├── backend/
-│   └── server.js              # Express server with MongoDB
 ├── frontend/
 │   ├── public/
 │   │   ├── index.html
@@ -87,8 +84,6 @@ calculator-hub/
 │       ├── App.js
 │       ├── App.css            # Global styles
 │       └── index.js
-├── package.json
-├── .env                       # Environment variables
 └── README.md
 ```
 
@@ -96,7 +91,6 @@ calculator-hub/
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- MongoDB (local or MongoDB Atlas)
 - npm or yarn
 
 ### Steps
@@ -107,67 +101,39 @@ git clone <your-repo-url>
 cd calculator-hub
 ```
 
-2. **Install backend dependencies**
-```bash
-npm install
-```
-
-3. **Install frontend dependencies**
+2. **Install frontend dependencies**
 ```bash
 cd frontend
 npm install
 cd ..
 ```
 
-4. **Configure environment variables**
-Create a `.env` file in the root directory:
-```env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/calculator-hub
-NODE_ENV=development
-```
-
-5. **Start MongoDB**
-Make sure MongoDB is running on your system or update MONGODB_URI with your MongoDB Atlas connection string.
-
 ## 🚀 Running the Application
 
 ### Development Mode
 
-**Option 1: Run both frontend and backend together**
 ```bash
-npm run dev
-```
-
-**Option 2: Run separately**
-
-Terminal 1 (Backend):
-```bash
-npm run server
-```
-
-Terminal 2 (Frontend):
-```bash
-npm run client
+cd frontend
+npm start
 ```
 
 The application will be available at:
 - Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
 
 ### Production Mode
 
 1. **Build the frontend**
 ```bash
+cd frontend
 npm run build
 ```
 
-2. **Start the server**
-```bash
-npm start
-```
-
-The production app will serve from port 5000.
+2. **Deploy the build folder**
+The `frontend/build` folder contains the production-ready static files. Deploy this to any static hosting service like:
+- Vercel
+- Netlify
+- GitHub Pages
+- AWS S3 + CloudFront
 
 ## 🎨 Customization
 
@@ -209,17 +175,9 @@ Replace `https://yourdomain.com` in the following files:
 - React 18
 - React Router Dom 6
 - React Helmet Async (SEO)
-- Axios
 - Math.js (calculations)
 - KaTeX (mathematical notation)
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB & Mongoose
-- Cors
-- Helmet (security)
-- Compression
+- React Icons
 
 ## 📱 Browser Support
 
@@ -231,24 +189,29 @@ Replace `https://yourdomain.com` in the following files:
 
 ## 🚀 Deployment
 
-### Deploy to Heroku
+### Deploy to Vercel (Recommended)
 ```bash
-heroku create calculator-hub-app
-git push heroku main
-heroku config:set MONGODB_URI=<your-mongodb-atlas-uri>
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+cd frontend
+vercel
 ```
 
-### Deploy to Vercel (Frontend) & MongoDB Atlas (Backend)
-1. Deploy backend to Heroku/Railway/Render
-2. Deploy frontend to Vercel
-3. Update API endpoints in frontend
+### Deploy to Netlify
+1. Connect your GitHub repository
+2. Set build command: `cd frontend && npm install && npm run build`
+3. Set publish directory: `frontend/build`
+4. Deploy!
 
-### Deploy to VPS (Complete)
-1. Set up Node.js and MongoDB on server
-2. Clone repository
-3. Run `npm run build`
-4. Use PM2 to manage Node process
-5. Configure Nginx as reverse proxy
+### Deploy to GitHub Pages
+```bash
+cd frontend
+npm install
+npm run build
+# Follow GitHub Pages deployment guide
+```
 
 ## 🤝 Contributing
 

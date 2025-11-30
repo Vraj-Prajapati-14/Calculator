@@ -271,6 +271,9 @@ const PercentageCalculator = () => {
       case 'decrease':
         resultText = `Percentage Decrease: ${formatNumber(calculatedResult)}%`;
         break;
+      default:
+        resultText = `${formatNumber(calculatedResult)}`;
+        break;
     }
 
     setResult(resultText);

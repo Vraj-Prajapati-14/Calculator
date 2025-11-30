@@ -6,8 +6,8 @@ import { generateFAQSchema } from '../utils/seoKeywords';
 import { calculatorSEOData, generateCalculatorStructuredData, generateCalculatorFAQs } from '../utils/calculatorSEOData';
 
 const MatrixCalculator = () => {
-  const [rows, setRows] = useState(2);
-  const [cols, setCols] = useState(2);
+  const [rows] = useState(2);
+  const [cols] = useState(2);
   const [matrixA, setMatrixA] = useState([[0, 0], [0, 0]]);
   const [matrixB, setMatrixB] = useState([[0, 0], [0, 0]]);
   const [operation, setOperation] = useState('add');
