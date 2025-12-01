@@ -50,7 +50,7 @@ Allow: /css/
 Allow: /js/
 
 # Sitemap location
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://calculator-hubs.vercel.app/sitemap.xml
 
 # Crawl-delay (optional, remove if not needed)
 # Crawl-delay: 1

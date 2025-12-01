@@ -56,6 +56,19 @@
   color: #667eea;
 }
 
+.contact-email {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  word-break: break-all;
+}
+
+.contact-email:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 25px;

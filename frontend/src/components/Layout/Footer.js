@@ -37,14 +37,22 @@ const Footer = () => {
           </div>
 
           <div className="footer-section">
-            <h4>About</h4>
-            <p>We provide free, easy-to-use calculators for students, professionals, and anyone who needs quick mathematical solutions.</p>
+            <h4>Contact Us</h4>
+            <p>If you have any doubts or suggestions, please contact us at:</p>
+            <p>
+              <a 
+                href="mailto:prajapativraj147@gmail.com?subject=Calculator Hub - Inquiry&body=Hello,%0D%0A%0D%0AI would like to share the following:%0D%0A%0D%0A" 
+                className="contact-email"
+                title="Send us an email"
+              >
+                prajapativraj147@gmail.com
+              </a>
+            </p>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p>&copy; {currentYear} Calculator Hub. All rights reserved.</p>
-          <p>Made with ❤️ for students and professionals worldwide</p>
         </div>
       </div>
     </footer>

@@ -154,25 +154,100 @@ const Home = () => {
     }
   ];
 
+  // Create ItemList schema for all calculators
+  const calculatorItemList = calculators.map((calc, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": calc.name,
+    "url": `https://calculator-hubs.vercel.app${calc.path}`,
+    "description": calc.description
+  }));
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Calculator Hub",
-    "url": "https://yourdomain.com",
+    "alternateName": [
+      // Core brand variations
+      "Calculator Hub", "Calculator Hubs", "Calc Hub", "Calc Hubs",
+      "CalculatorHub", "CalculatorHubs", "CalcHub", "CalcHubs",
+      "Calculator-Hub", "Calculator-Hubs", "Calc-Hub", "Calc-Hubs",
+      "Calchub", "Calchubs",
+      // Lowercase variations
+      "calculator hub", "calculator hubs", "calc hub", "calc hubs",
+      "calculatorhub", "calculatorhubs", "calchub", "calchubs",
+      "calculator-hub", "calculator-hubs", "calc-hub", "calc-hubs",
+      // With descriptors
+      "Calculator Hub App", "Calculator Hubs App", "Calc Hub App", "Calc Hubs App",
+      "CalculatorHub App", "CalculatorHubs App", "CalcHub App", "CalcHubs App",
+      "Calculator-Hub App", "Calculator-Hubs App", "Calc-Hub App", "Calc-Hubs App",
+      "Calchub App", "Calchubs App",
+      "Calculator Hub Website", "Calculator Hubs Website", "Calc Hub Website", "Calc Hubs Website",
+      "CalculatorHub Website", "CalculatorHubs Website", "CalcHub Website", "CalcHubs Website",
+      "Calculator-Hub Website", "Calculator-Hubs Website", "Calc-Hub Website", "Calc-Hubs Website",
+      "Calchub Website", "Calchubs Website",
+      // With "Free"
+      "Free Calculator Hub", "Free Calculator Hubs", "Free Calc Hub", "Free Calc Hubs",
+      "Free CalculatorHub", "Free CalculatorHubs", "Free CalcHub", "Free CalcHubs",
+      "Free Calculator-Hub", "Free Calculator-Hubs", "Free Calc-Hub", "Free Calc-Hubs",
+      "Free Calchub", "Free Calchubs",
+      "free calculator hub", "free calculator hubs", "free calc hub", "free calc hubs",
+      "free calculatorhub", "free calculatorhubs", "free calchub", "free calchubs",
+      // With "Best"
+      "Best Calculator Hub", "Best Calculator Hubs", "Best Calc Hub", "Best Calc Hubs",
+      "Best CalculatorHub", "Best CalculatorHubs", "Best CalcHub", "Best CalcHubs",
+      "Best Calculator-Hub", "Best Calculator-Hubs", "Best Calc-Hub", "Best Calc-Hubs",
+      "Best Calchub", "Best Calchubs",
+      "best calculator hub", "best calculator hubs", "best calc hub", "best calc hubs",
+      // With "Online"
+      "Online Calculator Hub", "Online Calculator Hubs", "Online Calc Hub", "Online Calc Hubs",
+      "Online CalculatorHub", "Online CalculatorHubs", "Online CalcHub", "Online CalcHubs",
+      "Online Calculator-Hub", "Online Calculator-Hubs", "Online Calc-Hub", "Online Calc-Hubs",
+      "Online Calchub", "Online Calchubs",
+      "online calculator hub", "online calculator hubs", "online calc hub", "online calc hubs",
+      // Combined variations
+      "Free Online Calculator Hub", "Free Online Calculator Hubs", "Free Online Calc Hub",
+      "Best Free Calculator Hub", "Best Free Calculator Hubs", "Best Free Calc Hub",
+      "Calculator Hub Online", "Calculator Hubs Online", "Calc Hub Online",
+      "CalculatorHub Online", "CalculatorHubs Online", "CalcHub Online",
+      "Calculator-Hubs Online", "Calchub Online",
+      // Short variations
+      "Calc", "Calculator", "Calcs", "Calculators",
+      "Free Calc", "Free Calculator", "Free Calcs", "Free Calculators",
+      "Best Calc", "Best Calculator", "Online Calc", "Online Calculator",
+      // Domain-based variations
+      "calculator-hubs", "calculator-hub", "calchub", "calchubs",
+      "calculatorhubs", "calculatorhub", "calchub", "calchubs",
+      "Calculator-Hubs.com", "CalculatorHub.com", "Calchub.com",
+      // Additional common searches
+      "Calculator Hub Free", "Calculator Hubs Free", "Calc Hub Free",
+      "CalculatorHub Free", "Calculator-Hubs Free", "Calchub Free",
+      "Calculator Hub Site", "Calculator Hubs Site", "Calc Hub Site",
+      "CalculatorHub Site", "Calculator-Hubs Site", "Calchub Site"
+    ],
+    "url": "https://calculator-hubs.vercel.app",
     "description": "Free online calculators for math, statistics, algebra, calculus and more. Calculate percentages, GPA, derivatives, integrals and much more.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://yourdomain.com/search?q={search_term_string}",
+      "target": "https://calculator-hubs.vercel.app/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
+    },
+    // ItemList schema for all calculators - helps with rich snippets
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "All Calculators",
+      "description": "Complete list of all free online calculators available on Calculator Hub",
+      "numberOfItems": calculators.length,
+      "itemListElement": calculatorItemList
     }
   };
 
   return (
     <>
       <SEO
-        title="FREE Calculator Hub - Best Easy Accurate Online Math Calculators for Students | 20+ Free Tools"
-        description="FREE Calculator Hub - Best, easy, and accurate online math calculators for students, teachers & professionals. 20+ free calculators including percentage, GPA, scientific, derivative, integral calculators. Fast, accurate, step-by-step solutions. No signup required!"
-        keywords="free calculator, best calculator, easy calculator, accurate calculator, calculator for students, calculator for college, online calculator, math calculator, scientific calculator, percentage calculator, GPA calculator, free online calculator, best calculator website, easy calculator for students, calculator no signup, free math tools, calculator hub"
+        title="Calc | Calculator | Calculator Hub | Calculator-Hubs | Calchub - FREE Best Easy Accurate Online Math Calculators for Students | 20+ Free Tools"
+        description="Calc | Calculator | Calculator Hub | Calculator-Hubs | Calchub - FREE best, easy, and accurate online math calculators for students, teachers & professionals. 20+ free calculators including percentage, GPA, scientific, derivative, integral calculators. Fast, accurate, step-by-step solutions. No signup required!"
+        keywords="calc, calculator, calculator hub, calculator hubs, calculator-hubs, calchub, calc hub, free calc, free calculator, calculator hub website, calculator hubs website, calchub website, best calculator hub, calculator hub free, calculator hub online, calculator hub app, free calculator, best calculator, easy calculator, accurate calculator, calculator for students, calculator for college, online calculator, math calculator, scientific calculator, percentage calculator, GPA calculator, free online calculator, best calculator website, easy calculator for students, calculator no signup, free math tools"
         canonicalUrl="/"
         structuredData={structuredData}
       />
